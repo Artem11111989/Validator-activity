@@ -1,0 +1,40 @@
+Official link is here https://github.com/ClanNetwork/testnets
+
+Explorer: https://testnet.explorer.testnet.run/Clan%20Network
+
+Instructions
+
+Update the packeges
+
+sudo apt update && sudo apt upgrade -y
+
+Install what we need
+
+sudo apt-get install make git jq curl gcc g++ mc nano  
+
+sudo apt install make clang pkg-config libssl-dev build-essential git jq ncdu bsdmainutils -y
+
+Install GO
+
+wget -O go1.18.linux-amd64.tar.gz https://go.dev/dl/go1.18.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.linux-amd64.tar.gz && rm go1.18.linux-amd64.tar.gz
+cat <<'EOF' >> $HOME/.bash_profile
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export GO111MODULE=on
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+EOF
+. $HOME/.bash_profile
+cp /usr/local/go/bin/go /usr/bin
+go version
+
+Install Clan Network
+
+cd $HOME && git clone https://github.com/clan-network/quicksilver.git --branch v0.1.10
+cd quicksilver
+git checkout v0.1.10
+make build
+/root/quicksilver/build/quicksilverd version
+cp $HOME/quicksilver/build/quicksilverd /usr/local/bin
+. $HOME/.bash_profile
+quicksilverd version
