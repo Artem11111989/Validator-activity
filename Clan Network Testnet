@@ -1,16 +1,16 @@
 Official link is here https://github.com/ClanNetwork/testnets
 
-Explorer: https://testnet.explorer.testnet.run/Clan%20Network
+Explorer: https://testnet.explorer.testnet.run/Clan%20Network or https://secretnodes.com/clan/chains/playstation-2
 
 Instructions
 
-Update the packeges
+Update the packages
 
-sudo apt update && sudo apt upgrade -y
+sudo apt-get update && sudo apt upgrade -y
 
 Install what we need
 
-sudo apt-get install make git jq curl gcc g++ mc nano  
+sudo apt-get install make git jq curl gcc g++ mc nano  или то или это
 
 sudo apt install make clang pkg-config libssl-dev build-essential git jq ncdu bsdmainutils -y
 
