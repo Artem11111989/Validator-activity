@@ -2,39 +2,63 @@ Official link is here https://github.com/ClanNetwork/testnets
 
 Explorer: https://testnet.explorer.testnet.run/Clan%20Network or https://secretnodes.com/clan/chains/playstation-2
 
+Minimum Hardware Requirements:
+
+- 4GB RAM
+- 50GB+ of disk space
+- 2 Cores (modern CPU's)
+
+
 Instructions
 
-Update the packages
 
-sudo apt-get update && sudo apt upgrade -y
+Install cland
+Download binary from github
 
-Install what we need
+1. Download the binary for your platform: releases (https://github.com/ClanNetwork/clan-network/releases/tag/v1.0.4-alpha).
 
-sudo apt-get install make git jq curl gcc g++ mc nano  или то или это
+wget https://github.com/ClanNetwork/clan-network/releases/download/v1.0.4-alpha/clan-network_v1.0.4-alpha_linux_amd64.tar.gz
 
-sudo apt install make clang pkg-config libssl-dev build-essential git jq ncdu bsdmainutils -y
+2. Copy it to a location in your PATH, i.e: /usr/local/bin or $HOME/bin.
 
-Install GO
+sudo tar -C /usr/local/bin -zxvf clan-network_v1.0.4-alpha_linux_amd64.tar.gz
 
-wget -O go1.18.linux-amd64.tar.gz https://go.dev/dl/go1.18.linux-amd64.tar.gz
-rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.linux-amd64.tar.gz && rm go1.18.linux-amd64.tar.gz
-cat <<'EOF' >> $HOME/.bash_profile
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
-export GO111MODULE=on
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
-EOF
-. $HOME/.bash_profile
-cp /usr/local/go/bin/go /usr/bin
-go version
+Verify installation
 
-Install Clan Network
+Enter command: cland version --long
+and check this out that everything is OK:
 
-cd $HOME && git clone https://github.com/clan-network/quicksilver.git --branch v0.1.10
-cd quicksilver
-git checkout v0.1.10
-make build
-/root/quicksilver/build/quicksilverd version
-cp $HOME/quicksilver/build/quicksilverd /usr/local/bin
-. $HOME/.bash_profile
-quicksilverd version
+name: Clan-Network
+server_name: clan-networkd
+version: 1.0.4-alpha
+commit: 7a6a92d782c978ac730e337b28d2bc927e809739
+build_tags: ""
+go: go version go1.18 darwin/amd64
+
+
+Let's add variables
+
+Add chainName. Enter by one command.
+
+CHAIN_ID=playstation-2 ; \
+echo $CHAIN_ID ; \
+echo 'export chainName='\"${CHAIN_ID}\" >> $HOME/.bash_profile
+
+Set your moniker name
+Add your moniker instead of <moniker-name>. Enter by one command.
+
+MONIKER_NAME=<moniker-name> ; \
+echo $MONIKER_NAME ; \
+echo 'export MONIKER_NAME='\"${MONIKER_NAME}\" >> $HOME/.bash_profile
+
+Set persistent peers
+
+Persistent peers will be required to tell your node where to connect to other nodes and join the network. To retrieve the peers for the chosen testnet:
+
+#Set the base repo URL for the testnet & retrieve peers
+CHAIN_REPO="https://raw.githubusercontent.com/ClanNetwork/testnets/main/$CHAIN_ID" && \
+export PEERS="$(curl -s "$CHAIN_REPO/persistent-peers.txt")"
+
+# check it worked
+echo $PEERS
+
