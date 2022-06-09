@@ -29,7 +29,8 @@ sudo tar -C /usr/local/bin -zxvf clan-network_v1.0.4-alpha_linux_amd64.tar.gz
 
 ## Verify installation
 
-Enter command: ```
+Enter command: 
+```
 cland version --long
 ```
 and check this out that everything is OK:
