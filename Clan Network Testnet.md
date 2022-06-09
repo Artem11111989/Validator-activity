@@ -16,13 +16,11 @@ Explorer: https://testnet.explorer.testnet.run/Clan%20Network or https://secretn
 Download binary from github
 
 1. Download the binary for your platform: releases (https://github.com/ClanNetwork/clan-network/releases/tag/v1.0.4-alpha).
-
 ```
 wget https://github.com/ClanNetwork/clan-network/releases/download/v1.0.4-alpha/clan-network_v1.0.4-alpha_linux_amd64.tar.gz
 ```
 
 2. Copy it to a location in your PATH, i.e: /usr/local/bin or $HOME/bin.
-
 ```
 sudo tar -C /usr/local/bin -zxvf clan-network_v1.0.4-alpha_linux_amd64.tar.gz
 ```
@@ -47,7 +45,8 @@ go: go version go1.18 darwin/amd64
 
 Add chainName. Enter by one command.
 
-``` CHAIN_ID=playstation-2 ; \
+``` 
+CHAIN_ID=playstation-2 ; \
 echo $CHAIN_ID ; \
 echo 'export chainName='\"${CHAIN_ID}\" >> $HOME/.bash_profile
 ```
@@ -55,7 +54,8 @@ echo 'export chainName='\"${CHAIN_ID}\" >> $HOME/.bash_profile
 ## Set your moniker name
 Add your moniker instead of <moniker-name>. Enter by one command.
 
-``` MONIKER_NAME=<moniker-name> ; \
+```
+MONIKER_NAME=<moniker-name> ; \
 echo $MONIKER_NAME ; \
 echo 'export MONIKER_NAME='\"${MONIKER_NAME}\" >> $HOME/.bash_profile
 ```
@@ -76,16 +76,17 @@ echo $PEERS
 ```
 
 ## Set 0 gas prices
-
+```
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uclan\"/" ~/.clan/config/app.toml
-
+```  
 
 Init and make chandges configuration
 
 
 Initialize the chain
-
+```
 cland init $MONIKER_NAME --chain-id=$CHAIN_ID
+```  
 
 This will generate the following files in ~/.clan/config/
 genesis.json
@@ -93,27 +94,29 @@ node_key.json
 priv_validator_key.json
 
 Download the genesis file
-
+```
 curl https://raw.githubusercontent.com/ClanNetwork/testnets/main/$CHAIN_ID/genesis.json > ~/.clan/config/genesis.json
+```  
 
 Set persistent peers
 
 Using the peers variable we set earlier, we can set the persistent_peers in ~/.clan/config/config.toml:
-
+```
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.clan/config/config.toml
-
+```
 Create a local key pair
-
+```
 cland keys add <key-name>
-
+```
 # Query the keystore for your public address
+```
 cland keys show <key-name> -a
-
+```
 Replace <key-name> with a key name of your choosing.
 If you already have a key from a previous testnet, you can recover it using the mnemonic:
-
+```
 cland keys add <key-name> --recover
-
+```
 After creating a new key, the key information and seed phrase will be shown. It is essential to write this seed phrase down and keep it in a safe place. The seed phrase is the only way to restore your keys.
 
 
