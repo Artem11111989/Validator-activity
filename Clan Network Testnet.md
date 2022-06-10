@@ -80,7 +80,7 @@ echo $PEERS
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uclan\"/" ~/.clan/config/app.toml
 ```  
 
-Init and make chandges configuration
+## Init and make chandges configuration
 
 
 Initialize the chain
