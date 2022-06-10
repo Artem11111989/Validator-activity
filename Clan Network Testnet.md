@@ -124,3 +124,12 @@ Get some testnet tokens
 
 Testnet tokens can be requested from the Faucet: https://faucet-testnet.clan.network/.
 
+## Start your node
+  
+  Now that everything is setup and ready to go, you can start your node.
+  
+  ```
+  cland start
+  ```
+ You will need some way to keep the process always running. If you're on linux, you can do this by creating a service. 
+Note: First run ```which cland ``` and replace /usr/local/bin/cland with the output if you find any differences 
