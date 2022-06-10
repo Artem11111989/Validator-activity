@@ -120,7 +120,7 @@ cland keys add <key-name> --recover
 After creating a new key, the key information and seed phrase will be shown. It is essential to write this seed phrase down and keep it in a safe place. The seed phrase is the only way to restore your keys.
 
 
-Get some testnet tokens
+* Get some testnet tokens
 
 Testnet tokens can be requested from the Faucet: https://faucet-testnet.clan.network/.
 
