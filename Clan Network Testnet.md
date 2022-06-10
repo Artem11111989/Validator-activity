@@ -33,12 +33,12 @@ cland version --long
 ```
 and check this out that everything is OK:
 
-name: Clan-Network
-server_name: clan-networkd
-version: 1.0.4-alpha
-commit: 7a6a92d782c978ac730e337b28d2bc927e809739
-build_tags: ""
-go: go version go1.18 darwin/amd64
+name: Clan-Network  
+server_name: clan-networkd  
+version: 1.0.4-alpha  
+commit: 7a6a92d782c978ac730e337b28d2bc927e809739  
+build_tags: ""  
+go: go version go1.18 darwin/amd64  
 
 
 ## Let's add variables
