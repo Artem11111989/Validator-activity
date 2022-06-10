@@ -108,7 +108,7 @@ Create a local key pair
 ```
 cland keys add <key-name>
 ```
-# Query the keystore for your public address
+Query the keystore for your public address
 ```
 cland keys show <key-name> -a
 ```
