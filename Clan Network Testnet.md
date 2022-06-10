@@ -83,7 +83,7 @@ sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uclan\"/" ~/.c
 ## Setting up the Node
 
 
-Initialize the chain
+* Initialize the chain
 ```
 cland init $MONIKER_NAME --chain-id=$CHAIN_ID
 ```  
@@ -93,22 +93,22 @@ genesis.json
 node_key.json
 priv_validator_key.json
 
-Download the genesis file
+* Download the genesis file
 ```
 curl https://raw.githubusercontent.com/ClanNetwork/testnets/main/$CHAIN_ID/genesis.json > ~/.clan/config/genesis.json
 ```  
 
-Set persistent peers
+* Set persistent peers
 
 Using the peers variable we set earlier, we can set the persistent_peers in ~/.clan/config/config.toml:
 ```
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.clan/config/config.toml
 ```
-Create a local key pair
+* Create a local key pair
 ```
 cland keys add <key-name>
 ```
-Query the keystore for your public address
+* Query the keystore for your public address
 ```
 cland keys show <key-name> -a
 ```
