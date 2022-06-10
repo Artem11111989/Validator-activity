@@ -64,13 +64,13 @@ echo 'export MONIKER_NAME='\"${MONIKER_NAME}\" >> $HOME/.bash_profile
 
 Persistent peers will be required to tell your node where to connect to other nodes and join the network. To retrieve the peers for the chosen testnet:
 
-#Set the base repo URL for the testnet & retrieve peers
+Set the base repo URL for the testnet & retrieve peers
 ```
 CHAIN_REPO="https://raw.githubusercontent.com/ClanNetwork/testnets/main/$CHAIN_ID" && \
 export PEERS="$(curl -s "$CHAIN_REPO/persistent-peers.txt")"
 ```
 
-#check it worked
+check it worked
 ```
 echo $PEERS
 ```
