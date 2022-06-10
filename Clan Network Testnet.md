@@ -52,7 +52,7 @@ echo 'export chainName='\"${CHAIN_ID}\" >> $HOME/.bash_profile
 ```
 
 ## Set your moniker name
-Add your moniker instead of <moniker-name>. Enter by one command.
+Add your moniker instead of < moniker-name >. Enter by one command.
 
 ```
 MONIKER_NAME=<moniker-name> ; \
