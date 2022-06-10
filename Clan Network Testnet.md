@@ -131,5 +131,34 @@ Testnet tokens can be requested from the Faucet: https://faucet-testnet.clan.net
   ```
   cland start
   ```
- You will need some way to keep the process always running. If you're on linux, you can do this by creating a service. 
+You will need some way to keep the process always running. If you're on linux, you can do this by creating a service. 
 Note: First run ```which cland ``` and replace /usr/local/bin/cland with the output if you find any differences 
+
+```
+sudo tee /etc/systemd/system/cland.service > /dev/null <<'EOF'
+[Unit]
+Description=Clan daemon
+After=network-online.target
+
+[Service]
+User=<your-username>
+ExecStart=/usr/local/bin/cland start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
+EOF
+``` 
+Then update and start the node
+  
+```
+sudo -S systemctl daemon-reload
+sudo -S systemctl enable cland
+sudo -S systemctl start cland
+```
+You can check the status with:
+```
+systemctl status cland
+```  
