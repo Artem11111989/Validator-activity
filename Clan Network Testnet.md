@@ -199,4 +199,10 @@ There are certain files that you need to backup to be able to restore your valid
 * node_key.json
 It is recommended that you encrypt the backup of these files.  
   
+## Check your node logs:  
+  
+```
+journalctl -u cland -f
+```
+  
   
