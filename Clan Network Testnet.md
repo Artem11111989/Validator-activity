@@ -191,3 +191,12 @@ cland tx staking create-validator \
   --gas-prices 0uclan \
   --from <key-name>
   ```
+
+## Backup critical files
+  
+There are certain files that you need to backup to be able to restore your validator if, for some reason, it damaged or lost in some way. Please make a secure backup of the following files located in ~/.clan/config/:
+* priv_validator_key.json
+* node_key.json
+It is recommended that you encrypt the backup of these files.  
+  
+  
