@@ -172,3 +172,22 @@ curl http://localhost:26657/status | jq .result.sync_info.catching_up
 ```
   
 If this command returns true then your node is still catching up. If it returns false then your node has caught up to the network current block and you are safe to proceed to upgrade to a validator node.  
+
+## Upgrade to a validator
+  
+To upgrade the node to a validator, you will need to submit a create-validator transaction:
+
+```
+cland tx staking create-validator \
+  --amount 1000000000uclan \
+  --commission-max-change-rate "0.1" \
+  --commission-max-rate "0.20" \
+  --commission-rate "0.1" \
+  --min-self-delegation "1" \
+  --details "validators write bios too" \
+  --pubkey=$(cland tendermint show-validator) \
+  --moniker $MONIKER_NAME \
+  --chain-id $CHAIN_ID \
+  --gas-prices 0uclan \
+  --from <key-name>
+  ```
