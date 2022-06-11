@@ -165,8 +165,10 @@ systemctl status cland
 
 ## Syncing the node
 After starting the cland daemon, the chain will begin to sync to the network. The time to sync to the network will vary depending on your setup, but could take a very long time. To query the status of your node:
-Query via the RPC (default port: 26657)
+  
+(Query via the RPC (default port: 26657))
 ```  
 curl http://localhost:26657/status | jq .result.sync_info.catching_up
 ```
+  
 If this command returns true then your node is still catching up. If it returns false then your node has caught up to the network current block and you are safe to proceed to upgrade to a validator node.  
