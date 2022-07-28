@@ -150,7 +150,8 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ujunox\"/" $HOME/.
 
 ## Enable prometheus
 
-```sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.juno/config/config.toml
+```
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.juno/config/config.toml
 ```
 
 ## Reset chain data
