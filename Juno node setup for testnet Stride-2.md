@@ -186,3 +186,80 @@ sudo systemctl daemon-reload
 sudo systemctl enable junod
 sudo systemctl restart junod && sudo journalctl -u junod -f -o cat
 ```
+
+# Post installation
+
+When installation is finished you need to load variables into system
+
+```
+source $HOME/.bash_profile
+```
+
+Next you have to make sure your validator is syncing blocks. Use command below to check synchronization status
+
+```
+junod status 2>&1 | jq .SyncInfo
+```
+
+## Create wallet
+
+Don’t forget to save the mnemonic
+```
+junod keys add $WALLET
+```
+
+(OPTIONAL) To recover your wallet using seed phrase
+
+```
+junod keys add $WALLET --recover
+```
+
+## Save wallet info
+
+Add wallet and valoper address into variables
+```
+JUNO_WALLET_ADDRESS=$(junod keys show $WALLET -a)
+JUNO_VALOPER_ADDRESS=$(junod keys show $WALLET --bech val -a)
+echo 'export JUNO_WALLET_ADDRESS='${JUNO_WALLET_ADDRESS} >> $HOME/.bash_profile
+echo 'export JUNO_VALOPER_ADDRESS='${JUNO_VALOPER_ADDRESS} >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+## Fund your wallet
+
+In order to create validator first you need to fund your wallet with testnet tokens. To top up your wallet join juno discord server and navigate to #faucet to request test tokens
+
+To request a faucet grant:
+
+```
+$request <YOUR_WALLET_ADDRESS>
+```
+
+## Create validator
+
+Please make sure that you have at least 1 junox (1 junox is equal to 1000000 ujunox) and your node is synchronized
+
+To check your wallet balance:
+
+```
+junod query bank balances $JUNO_WALLET_ADDRESS
+```
+
+If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue
+
+Create validator
+
+```
+junod tx staking create-validator \
+  --amount 10000000ujunox \
+  --from $WALLET \
+  --commission-max-change-rate "0.01" \
+  --commission-max-rate "0.2" \
+  --commission-rate "0.07" \
+  --min-self-delegation "1" \
+  --pubkey  $(junod tendermint show-validator) \
+  --moniker $NODENAME \
+  --chain-id $JUNO_CHAIN_ID
+  ```
+  
+  
